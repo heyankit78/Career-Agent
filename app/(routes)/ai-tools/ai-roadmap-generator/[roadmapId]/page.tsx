@@ -10,6 +10,8 @@ import {
   useNodesState,
   useEdgesState,
   addEdge,
+  Edge,
+  BackgroundVariant,
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
 import TurboNode from "../_components/TurboNode";
@@ -34,7 +36,7 @@ const RoadmapGenerator = () => {
   const [loading, setLoading] = React.useState<boolean>(true);
   const [roadmapDialog, setRoadmapDialog] = React.useState<boolean>(false);
   const [nodes, setNodes, onNodesChange] = useNodesState([]);
-  const [edges, setEdges, onEdgesChange] = useEdgesState([]);
+  const [edges, setEdges, onEdgesChange] = useEdgesState<Edge>([]);
 
   // Memoize node types to prevent unnecessary recreations
   const nodeTypes = useMemo(
@@ -129,7 +131,7 @@ const RoadmapGenerator = () => {
         >
           <Controls />
           <MiniMap />
-          <Background variant="dots" gap={12} size={1} />
+          <Background variant={BackgroundVariant.Dots} gap={12} size={1} />
         </ReactFlow>
       </div>
     ),

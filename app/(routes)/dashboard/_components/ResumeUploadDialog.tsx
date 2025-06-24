@@ -18,11 +18,13 @@ import { checkSubscription } from "@/app/actions/CheckSubscription";
 interface ResumeUploadDialogProps {
   setOpenResumeDialog: (open: boolean) => void;
   openResumeDialog: boolean;
+  setIsLoading: any;
 }
 
 const ResumeUploadDialog = ({
   setOpenResumeDialog,
   openResumeDialog,
+  setIsLoading,
 }: ResumeUploadDialogProps) => {
   const [loading, setLoading] = React.useState(false);
   const [file, setFile] = React.useState<File | null>(null);

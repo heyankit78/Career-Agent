@@ -53,7 +53,7 @@ export function AppSidebar() {
           <Image
             src={"/logo2.jpg"}
             alt="logo"
-            width={100}
+            width={50}
             height={70}
             className="w-full"
           />

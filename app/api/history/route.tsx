@@ -45,12 +45,10 @@ export async function GET(req: any) {
     if (!recordId) {
       // If no recordId is provided, fetch all history records for the user
       const user = await currentUser();
-      const result = await db
-        .select()
-        .from(historyTable)
-        .where(
-          eq(historyTable.userEmail, user?.primaryEmailAddress?.emailAddress)
-        );
+      const result = await db.select().from(historyTable).where(
+        //@ts-ignore
+        eq(historyTable.userEmail, user?.primaryEmailAddress?.emailAddress)
+      );
       return NextResponse.json(result);
     } else {
       const result = await db

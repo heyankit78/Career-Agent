@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { inngest } from "@/inngest/client";
 import { currentUser } from "@clerk/nextjs/server";
+import { getRuns } from "@/lib/utils";
 
 export async function POST(req: NextRequest) {
   try {
@@ -57,17 +58,4 @@ export async function POST(req: NextRequest) {
       { status: 500 }
     );
   }
-}
-
-export async function getRuns(runId: string) {
-  const response = await fetch(
-    `${process.env.INNGEST_SERVER_HOST}/v1/events/${runId}/runs`,
-    {
-      headers: {
-        Authorization: `Bearer ${process.env.INNGEST_SIGNING_KEY}`,
-      },
-    }
-  );
-  const json = await response.json();
-  return json.data;
 }

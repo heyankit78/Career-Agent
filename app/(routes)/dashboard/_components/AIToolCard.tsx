@@ -95,6 +95,7 @@ export default function AiToolCard({ tool }: AiToolProps) {
         </Button>
 
         <ResumeUploadDialog
+          setIsLoading={setLoading}
           setOpenResumeDialog={setOpenResumeDialog}
           openResumeDialog={openResumeDialog}
         />

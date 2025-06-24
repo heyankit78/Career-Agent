@@ -14,7 +14,7 @@ function DashboardProvider({
   return (
     <SidebarProvider>
       <AppSidebar />
-      <main className="w-full h-screen">
+      <main className="w-full h-screen overflow-hidden">
         <AppHeader />
         {/* <SidebarTrigger /> */}
         <div className="p-10">{children}</div>

@@ -98,17 +98,17 @@ function History() {
 
   return (
     <div className="mt-5 p-5 border rounded-xl">
-      <h2 className="font-bold text-lg">Previous History</h2>
+      <h2 className="font-bold text-lg">Previous History hii</h2>
       <p className="mb-4">What you previously worked on, you can find here</p>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 h-[30vh] m-4">
-        {userHistory.map((item: HistoryItem) => {
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 grid-rows-3">
+        {userHistory.map((item: HistoryItem, index) => {
           const tool = getToolDetails(item.aiAgentType);
           return (
             <Link
-              key={item.recordId}
+              key={index}
               href={`${item.aiAgentType}/${item.recordId}`}
-              className="p-4 border rounded-lg shadow-sm hover:shadow-md transition-shadow hover:bg-blue-200"
+              className="h-full p-4 border rounded-lg shadow-sm hover:shadow-md transition-shadow hover:bg-blue-200"
             >
               <div className="flex items-center space-x-3 mb-3">
                 <Image

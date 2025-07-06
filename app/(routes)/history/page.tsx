@@ -6,6 +6,7 @@ import Link from "next/link";
 // import { aiToolsList } from "./AITools";
 import { Skeleton } from "@/components/ui/skeleton";
 import { aiToolsList } from "../dashboard/_components/AITools";
+import { cn } from "@/lib/utils";
 
 type HistoryItem = {
   recordId: string;
@@ -98,18 +99,23 @@ function History() {
   }
 
   return (
-    <div className="mt-5 p-5 border rounded-xl">
+    <div className="mt-5 p-5 border rounded-xl min-h-[40vh]">
       <h2 className="font-bold text-lg">Previous History</h2>
       <p className="mb-4">What you previously worked on, you can find here</p>
 
-      <div className="grid grid-cols-1 w-full m-4">
+      <div
+        className={cn(
+          "grid grid-cols-1 gap-4 w-full grid-rows-3 h-full min-h-[60vh]",
+          userHistory.length === 1 ? "place-items-center" : "lg:grid-cols-3"
+        )}
+      >
         {userHistory.map((item: HistoryItem) => {
           const tool = getToolDetails(item.aiAgentType);
           return (
             <Link
               key={item.recordId}
               href={`${item.aiAgentType}/${item.recordId}`}
-              className="mt-4 p-4 border rounded-lg shadow-sm hover:shadow-md transition-shadow hover:bg-blue-200"
+              className="flex flex-col justify-between h-full p-4 border rounded-lg shadow-sm hover:shadow-md transition-shadow hover:bg-blue-200"
             >
               <div className="flex items-center space-x-3 mb-3">
                 <Image

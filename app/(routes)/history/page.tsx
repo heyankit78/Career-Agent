@@ -103,12 +103,7 @@ function History() {
       <h2 className="font-bold text-lg">Previous History</h2>
       <p className="mb-4">What you previously worked on, you can find here</p>
 
-      <div
-        className={cn(
-          "grid grid-cols-1 gap-4 w-full grid-rows-3 h-full min-h-[60vh]",
-          userHistory.length === 1 ? "place-items-center" : "lg:grid-cols-3"
-        )}
-      >
+      <div className={cn("grid grid-cols-1 gap-4 w-full")}>
         {userHistory.map((item: HistoryItem) => {
           const tool = getToolDetails(item.aiAgentType);
           return (

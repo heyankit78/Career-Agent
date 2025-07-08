@@ -47,6 +47,16 @@ export function AppSidebar() {
     }
     return path.startsWith(url); // Starts with match for other routes
   };
+  const childVariant = {
+    open: {
+      opacity: 1,
+      y: 0,
+    },
+    closed: {
+      opacity: 0,
+      y: -40,
+    },
+  };
   const sidebarVariant = {
     open: {
       opacity: 1,
@@ -55,6 +65,20 @@ export function AppSidebar() {
     closed: {
       opacity: 0,
       x: -40,
+    },
+  };
+  const parentVariant = {
+    open: {
+      transition: {
+        staggerChildren: 0.07,
+        delayChildren: 0.3,
+      },
+    },
+    closed: {
+      transition: {
+        staggerChildren: 0.05,
+        delayChildren: -1,
+      },
     },
   };
   return (
@@ -69,6 +93,7 @@ export function AppSidebar() {
       <motion.div
         initial={false}
         variants={sidebarVariant}
+        exit="closed"
         animate={state == "expanded" ? "open" : "closed"}
         transition={{ duration: 0.4 }}
       >
@@ -76,19 +101,22 @@ export function AppSidebar() {
           <SidebarGroup>
             <SidebarGroupContent>
               <SidebarMenu className="mt-5">
-                {items.map((item, index) => (
-                  <a
-                    href={item.url}
-                    key={index}
-                    className={`p-2 text-lg flex gap-2 items-center hover:bg-gray-100 rounded-lg ${
-                      isActive(item.url) ? "bg-gray-200 font-medium" : ""
-                    }`}
-                  >
-                    <item.icon className="h-5 w-5" />
+                <motion.div variants={parentVariant}>
+                  {items.map((item, index) => (
+                    <motion.a
+                      variants={childVariant}
+                      href={item.url}
+                      key={index}
+                      className={`p-2 text-lg flex gap-2 items-center hover:bg-gray-100 rounded-lg ${
+                        isActive(item.url) ? "bg-gray-200 font-medium" : ""
+                      }`}
+                    >
+                      <item.icon className="h-5 w-5" />
 
-                    {state === "expanded" && <span>{item.title}</span>}
-                  </a>
-                ))}
+                      {state === "expanded" && <span>{item.title}</span>}
+                    </motion.a>
+                  ))}
+                </motion.div>
               </SidebarMenu>
             </SidebarGroupContent>
           </SidebarGroup>
